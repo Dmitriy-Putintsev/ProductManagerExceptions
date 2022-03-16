@@ -20,7 +20,7 @@ class ProductManagerTest {
     private Book secondBook = new Book(5, "Метод Вайкоффа", 945, "Джек К.Хатсон");
     private Book thirdBook = new Book(6, "За пределами мозга", 1_000, "Станислав Гроф");
 
-    @BeforeEach
+    //    @BeforeEach
     void setUp() {
         manager.add(firstPhone);
         manager.add(secondPhone);
@@ -32,6 +32,7 @@ class ProductManagerTest {
 
     @Test
     void shouldGetAll() {
+        setUp();
         Product[] expected = new Product[]{firstPhone, secondPhone, thirdPhone, firstBook, secondBook, thirdBook};
         Product[] actual = manager.getAll();
         assertArrayEquals(expected, actual);
@@ -39,6 +40,7 @@ class ProductManagerTest {
 
     @Test
     void shouldFindNameBook() {
+        setUp();
         Product[] expected = new Product[]{secondBook};
         Product[] actual = manager.searchBy("Метод Вайкоффа");
         assertArrayEquals(expected, actual);
@@ -46,6 +48,7 @@ class ProductManagerTest {
 
     @Test
     void shouldFindNameSmartPhone() {
+        setUp();
         Product[] expected = new Product[]{firstPhone};
         Product[] actual = manager.searchBy("Realme");
         assertArrayEquals(expected, actual);
@@ -53,6 +56,7 @@ class ProductManagerTest {
 
     @Test
     void shouldFindAuthorBook() {
+        setUp();
         Product[] expected = new Product[]{thirdBook};
         Product[] actual = manager.searchBy("Станислав Гроф");
         assertArrayEquals(expected, actual);
@@ -60,10 +64,27 @@ class ProductManagerTest {
 
     @Test
     void shouldFindManufacturePone() {
+        setUp();
         Product[] expected = new Product[]{thirdPhone};
         Product[] actual = manager.searchBy("Mundo Reader");
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    void shouldDisplaySeveralSuitableProducts() {
+        Product firstPhone = new Product(1, "Realme", 15_000);
+        Product secondPhone = new Product(1, "Realme", 15_000);
+        assertEquals(firstPhone, secondPhone);
+    }
+
+    @Test
+    public void shouldNotFindNull() {
+        setUp();
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Petya");
+        assertArrayEquals(expected, actual);
+    }
 }
+
 
 
