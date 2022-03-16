@@ -64,37 +64,6 @@ class ProductManagerTest {
         Product[] actual = manager.searchBy("Mundo Reader");
         assertArrayEquals(expected, actual);
     }
-
-    @Test
-    void shouldNotFindAnything() {
-        Product[] expected = new Product[]{};
-        Product[] actual = manager.searchBy(null);
-    }
-
-
-    @Test
-    void shouldGetId() {
-        firstPhone.setId(2);
-        int expected = 2;
-        int actual = firstPhone.getId();
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void shouldGetName() {
-        thirdPhone.setName("BQ");
-        String expected = "BQ";
-        String actual = thirdPhone.getName();
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void shouldGetPrice() {
-        secondBook.setPrice(945);
-        int expected = 945;
-        int actual = secondBook.getPrice();
-    }
-
 }
 
 

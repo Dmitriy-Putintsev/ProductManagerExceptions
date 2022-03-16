@@ -1,5 +1,6 @@
 package ru.netology.repository;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
@@ -13,6 +14,7 @@ class ProductRepositoryTest {
     private Smartphone thirdPhone = new Smartphone(3, "BQ", 8_000, "Mundo Reader");
 
 
+    @BeforeEach
     void setUp() {
         repository.save(firstPhone);
         repository.save(secondPhone);
@@ -22,7 +24,6 @@ class ProductRepositoryTest {
 
     @Test
     void shouldSave() {
-        setUp();
         repository.save(new Smartphone(4, "NOKIA", 25_000, "Nokia Corporation"));
         int expected = 4;
         Product[] actual = repository.findAll();
@@ -30,7 +31,6 @@ class ProductRepositoryTest {
 
     @Test
     void shouldFindAll() {
-        setUp();
         int expected = 3;
         Product[] actual = repository.findAll();
         assertEquals(expected, actual.length);
@@ -38,9 +38,6 @@ class ProductRepositoryTest {
 
     @Test
     void shouldRemoveById() {
-        repository.save(firstPhone);
-        repository.save(secondPhone);
-        repository.save(thirdPhone);
         Product[] expected = new Product[]{secondPhone, thirdPhone};
         repository.removeById(1);
         Product[] actual = repository.findAll();
