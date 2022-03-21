@@ -4,9 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
-import ru.netology.domain.NotFoundException;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ProductRepositoryTest {
     private ProductRepository repository = new ProductRepository();
@@ -23,16 +22,17 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void shouldSuccessfullyDeleteAnExistingItem(){
+    void shouldSuccessfullyDeleteAnExistingItem() {
         repository.removeById(1);
-        Product[] expected = new Product[]{secondPhone,thirdPhone};
+        Product[] expected = new Product[]{secondPhone, thirdPhone};
         Product[] actual = repository.findAll();
 
-        assertArrayEquals(expected,actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
-    void shouldGenerateNotFoundExceptionWhenTryingRoDeleteANonExistentElement(){
+    void shouldGenerateNotFoundExceptionWhenTryingRoDeleteANonExistentElement() {
+
         repository.removeById(20);
     }
 }

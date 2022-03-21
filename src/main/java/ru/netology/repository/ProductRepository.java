@@ -31,7 +31,6 @@ public class ProductRepository {
 
     //-------Удалить по Id---------------------
     public void removeById(int id) {
-        findById(id);
         if (findById(id) == null) {
             throw new NotFoundException(id);
         }
