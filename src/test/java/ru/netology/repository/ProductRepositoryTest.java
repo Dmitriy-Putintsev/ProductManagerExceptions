@@ -2,6 +2,7 @@ package ru.netology.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.netology.domain.NotFoundException;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 
@@ -33,7 +34,8 @@ class ProductRepositoryTest {
     @Test
     void shouldGenerateNotFoundExceptionWhenTryingRoDeleteANonExistentElement() {
 
-        repository.removeById(20);
+        assertThrows(NotFoundException.class, () -> repository.removeById(26));
+
     }
 }
 
